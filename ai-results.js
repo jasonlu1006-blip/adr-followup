@@ -28,7 +28,7 @@ function drawAIOverlay(){
  ctx.save();ctx.lineWidth=2*devicePixelRatio;ctx.font=`${13*devicePixelRatio}px sans-serif`;
  for(const [i,o]of r.overlay.entries()){
   ctx.strokeStyle=['#ffe755','#ffb347','#7dff81','#64eaff','#ff8ae8','#ff6666'][Number(o.level.replace('C',''))-2]||'#fff';ctx.fillStyle=ctx.strokeStyle;
-  const points=o.polygon.map(point);if(!points.length)continue;ctx.beginPath();ctx.moveTo(points[0].x,points[0].y);for(const p of points.slice(1))ctx.lineTo(p.x,p.y);ctx.closePath();ctx.stroke();ctx.fillText(o.level+' '+o.confidence.toFixed(2),points[0].x,points[0].y-5);
+  const points=o.polygon.map(point);if(!points.length)continue;ctx.beginPath();ctx.moveTo(points[0].x,points[0].y);for(const p of points.slice(1))ctx.lineTo(p.x,p.y);ctx.closePath();ctx.stroke();ctx.fillText(o.level+' 信心 '+o.confidence.toFixed(2),points[0].x,points[0].y-5);
  }
  ctx.strokeStyle='#ffffff';ctx.lineWidth=3*devicePixelRatio;
  for(const v of Object.values(r.endplates))for(const name of ['upper','lower']){if(!v[name])continue;const [a,b]=v[name].map(point);ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}

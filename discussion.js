@@ -15,7 +15,7 @@ function discussionPairTable(){
 function discussionView(){
  const d=db.discussion;if(!d)return panel('圖表與詳細解讀','請重新登入以載入完整討論版。');
  return title('DISCUSSION REPORT · EXPLORATORY','圖表與詳細解讀','術前、術後、門診與影像放在一起看。英文名詞附中文說明；圖表、PDF 與原片可互相核對。')+
- `<div class="toolbar"><button id="discussion-pdf" class="primary">下載完整 PDF</button><button id="discussion-csv">下載配對數值 CSV</button><span id="discussion-download-status" role="status"></span></div>`+
+ `<div class="note">此頁品牌已套用 9/29 合併規則。下方 PDF 是 9/28 固定歷史版，仍含舊產品分組，不含新的長期病例專區；最新內容請以網頁為準。</div><div class="toolbar"><button id="discussion-pdf" class="primary">下載 9/28 歷史版 PDF</button><button id="discussion-csv">下載配對數值 CSV</button><span id="discussion-download-status" role="status"></span></div>`+
  `<div class="cards">${metric('植入節段 ROM',d.counts.implantROMPairs,`${d.counts.implantROMPatients} 位 · 手術表節段核對`)}${metric('全部 ROM 配對',d.counts.romPairs,`${d.counts.romPatients} 位 · 含其他節段／全頸椎`)}${metric('C2–7 Cobb 配對',d.counts.globalCobbPairs,'同病人術前／術後 · 角度草稿')}${metric('圖表／詳細章節',Object.keys(d.figures).length,`${d.sections.length} 節說明 · 與 PDF 共用資料`)}</div>`+
  `<div class="note"><b>怎麼讀：</b>灰藍點＝術前，綠點＝術後；同一條線連同人同節段。Δ＝術後減術前，正值不代表效果較好。每張圖都附追蹤月份與限制，<b>這些是待評讀的 AI 草稿</b>，不是品牌療效排名。Cobb 為無符號夾角，尚不能解讀成前凸改善。</div>`+
  `<div class="discussion-toc" aria-label="報告目錄">${d.sections.map((s,i)=>`<a href="#discussion-${i}">${esc(s.title)}</a>`).join('')}<a href="#discussion-pairs">逐例數值與原片</a></div>`+
